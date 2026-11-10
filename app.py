@@ -7,9 +7,7 @@ from database import (
 
 from agent import ask_agent
 
-
 create_table()
-
 
 st.set_page_config(
     page_title="AI Employee Database Agent",
@@ -17,15 +15,8 @@ st.set_page_config(
     layout="wide"
 )
 
-
-st.title(
-    "🤖 AI Employee Database Agent"
-)
-
-st.caption(
-    "Gemini + Function Calling + SQLite + Streamlit"
-)
-
+st.title("🤖 AI Employee Database Agent")
+st.caption("Gemini + Function Calling + SQLite + Streamlit")
 
 tab1, tab2, tab3 = st.tabs(
     [
@@ -35,17 +26,12 @@ tab1, tab2, tab3 = st.tabs(
     ]
 )
 
-
 # ==================================================
 # AI AGENT
 # ==================================================
 
 with tab1:
-
-    st.header(
-        "Ask the AI Agent"
-    )
-
+    st.header("Ask the AI Agent")
     st.write(
         """
         You can ask the agent to create, read,
@@ -53,11 +39,8 @@ with tab1:
         """
     )
 
-
     question = st.text_area(
-
         "Enter your request",
-
         placeholder="""
 Examples:
 
@@ -81,93 +64,46 @@ Delete employee 3.
 """
     )
 
-
-    if st.button(
-        "🚀 Execute",
-        type="primary"
-    ):
-
+    if st.button("🚀 Execute", type="primary"):
         if not question.strip():
-
-            st.warning(
-                "Please enter a request."
-            )
-
+            st.warning("Please enter a request.")
         else:
-
-            with st.spinner(
-                "AI Agent is working..."
-            ):
-
+            with st.spinner("AI Agent is working..."):
                 try:
-
-                    answer = ask_agent(
-                        question
-                    )
-
-                    st.success(
-                        "Agent completed the request."
-                    )
-
-                    st.markdown(
-                        "### AI Response"
-                    )
-
+                    answer = ask_agent(question)
+                    st.success("Agent completed the request.")
+                    st.markdown("### AI Response")
                     st.write(answer)
-
                 except Exception as error:
-
-                    st.error(
-                        f"Error: {error}"
-                    )
-
+                    st.error(f"Error: {error}")
 
 # ==================================================
 # EMPLOYEES
 # ==================================================
 
 with tab2:
-
-    st.header(
-        "Employee Database"
-    )
-
+    st.header("Employee Database")
 
     employees = get_all_employees()
 
-
     if employees:
-
         st.dataframe(
             employees,
             use_container_width=True,
             hide_index=True
         )
-
     else:
+        st.info("No employees found.")
 
-        st.info(
-            "No employees found."
-        )
-
-
-    if st.button(
-        "🔄 Refresh"
-    ):
-
+    if st.button("🔄 Refresh"):
         st.rerun()
-
 
 # ==================================================
 # ABOUT
 # ==================================================
 
 with tab3:
-
-    st.header(
-        "About This Application"
-    )
-
+    st.header("About This Application")
     st.write(
         """
         This application demonstrates an AI Agent
