@@ -23,7 +23,7 @@ st.title(
 )
 
 st.caption(
-    "OpenAI + Function Calling + SQLite + Streamlit"
+    "Gemini + Function Calling + SQLite + Streamlit"
 )
 
 
@@ -176,7 +176,7 @@ with tab3:
         Technologies:
 
         • Python
-        • OpenAI
+        • Gemini
         • Function Calling
         • SQLite
         • Streamlit
@@ -185,7 +185,7 @@ with tab3:
 
         Instead:
 
-        User → OpenAI Agent → Python Tool → SQLite
+        User → Gemini Agent → Python Tool → SQLite
 
         The database operation result is then
         returned to the AI Agent.
